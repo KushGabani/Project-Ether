@@ -43,5 +43,5 @@ app.post("/resp-success", function (req, res) {
 });
 
 app.listen(port, function () {
-  console.log("Serving static on" + port + "....");
+  console.log("Serving static on " + port + "....");
 });
