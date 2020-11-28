@@ -18,14 +18,9 @@
       rel="stylesheet"
     />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
     <script src="resp-disease-script.js"></script>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
   </head>
   <body>
     <div class="cont">
@@ -105,24 +100,22 @@
         Here in this project we capture <br />that information as an audio using
         <span style="color: #ff9000">Digital Stethoscopes</span>.
       </p>
-
-      <div style="height: 0px; overflow: hidden">
-        <input
-          type="file"
-          accept="audio/*"
-          multiple="false"
-          id="audio-selector"
-          onchange="uploadAudio(this.files)"
-        />
-      </div>
       <div style="display: flex; justify-content: left; align-items: center">
-        <button class="uploadBtn" onclick="handleClickEvent()">
-          Upload Audio
-        </button>
-        <span
+	<form id="uploadForm"
+          enctype="multipart/form-data"
+          action="/Respiratory/audio"
+          method="post">
+	        <button class="uploadBtn" onclick="handleClickEvent()">
+        	  Upload Audio
+	        </button>
+        	<input type="file" name="uploaded-audio" id = "select-audio" style = "display : none" />
+        	<input type="submit" name="submit" id = "submit" style = "display : none">
+	</form>
+	<span
           class="spinner-border text-dark"
           style="margin-left: 1rem; display: none"
           id="spinner"
+	  style = "display: 'none'"
         ></span>
       </div>
 

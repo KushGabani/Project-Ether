@@ -8,28 +8,33 @@ let classes = {
 };
 
 function handleClickEvent() {
-  document.getElementById("audio-selector").click();
+  document.getElementById("select-audio").click();
 }
 
-function uploadAudio(files) {
-  var fileReader = new FileReader();
-  fileReader.readAsArrayBuffer(files[0]);
-  let data = {
-    fileName: files[0].name,
-  };
-  console.log(files[0].name);
-  document.getElementById("spinner").style.display = "block";
-  passParams(data);
-}
+$("#select-audio").change(function () {
+  document.getElementbyId("Submit").click();
+})
+
+$(document).ready(function() {
+  $('#uploadForm').submit(function() {
+    document.getElementById("spinner").style.display = "block";	
+    $(this).ajaxSubmit({
+      error: function(xhr) {
+        console.log("ERR!");
+        document.getElementById("spinner").style.display = "none";	
+      },
+
+      success: function(response) {
+        console.log(response);
+        document.getElementById("spinner").style.display = "none";
+	passParams(response);
+      }
+    });
+    return false;
+  });
+});
 
 function passParams(data) {
-  $.ajax({
-    type: "POST",
-    data: JSON.stringify(data),
-    contentType: "application/json",
-    url: "http://localhost:8888/resp-success",
-    success: function (data) {
-      document.getElementById("spinner").style.display = "none";
       data = data.toString().replace("[", "").replace("]", "").split(",");
       console.log(data);
 
@@ -40,6 +45,4 @@ function passParams(data) {
         document.getElementById(className).innerHTML = classes[i];
         document.getElementById(probName).innerHTML = data[i] + " %";
       }
-    },
-  });
 }

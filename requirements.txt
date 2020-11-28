@@ -1,7 +1,4 @@
-numpy
 tensorflow-cpu
 librosa
-keras
 pandas
-joblib
 sklearn

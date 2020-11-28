@@ -68,7 +68,7 @@ function handleForm() {
     data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "text",
-    url: "http://localhost:8888/HeartDisease-success",
+    url: window.location.origin + "/HeartDisease",
     success: function (data) {
       flag = 1;
       changeLayout(data.toString());

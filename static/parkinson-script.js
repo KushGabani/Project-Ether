@@ -21,7 +21,7 @@ $(document).on("change", "#image-selector", function () {
 let model;
 (async function () {
   model = await tf.loadLayersModel(
-    "http://localhost:8888/tfjs-models/Parkinsons-detection-model/model.json"
+	window.location.origin + "/tfjs-models/Parkinsons-detection-model/model.json"
   );
   $(".spinner-border").hide();
 })();
