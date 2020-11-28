@@ -1,14 +1,10 @@
-import sys, json
+import sys
 import os
-import numpy as np
-import tensorflow as tf
 import librosa
-from tensorflow import keras
 from tensorflow.keras.models import load_model
 
 audioFile = os.listdir(os.getcwd() + "/uploaded-data/")[0]
 print(audioFile)
-
 clip, sr = librosa.load(audioFile)
 mfccs = librosa.feature.mfcc(y = clip, sr = sr, n_mfcc = 40)
 if mfccs.shape[1] == 862:
@@ -17,7 +13,6 @@ if mfccs.shape[1] == 862:
     predictions = model.predict(mfccs)
     predictions =  [(round(pred * 100)) for pred in predictions[0]]
     print(predictions)
-    os.remove(audioFile);
-    
+    os.remove(audioFile)
 else:
     print("Cannot process audio file")
