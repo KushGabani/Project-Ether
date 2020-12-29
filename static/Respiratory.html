@@ -14,7 +14,7 @@
     />
     <!-- GOOGLE ROBOTO & DM SERIF FONT -->
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Reem+Kufi&family=DM+Sans&family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Reem+Kufi&family=DM+Sans&family=Roboto:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -100,23 +100,27 @@
         Here in this project we capture <br />that information as an audio using
         <span style="color: #ff9000">Digital Stethoscopes</span>.
       </p>
-      <div style="display: flex; justify-content: left; align-items: center">
-	<form id="uploadForm"
-          enctype="multipart/form-data"
-          action="/Respiratory/audio"
-          method="post">
-	        <button class="uploadBtn" onclick="handleClickEvent()">
-        	  Upload Audio
-	        </button>
-        	<input type="file" name="uploaded-audio" id = "select-audio" style = "display : none" />
-        	<input type="submit" name="submit" id = "submit" style = "display : none">
-	</form>
-	<span
+
+      <div class = "buttonArena align-center" style = "position: relative;">
+        <form id="uploadForm"
+        enctype="multipart/form-data"
+        action="/Respiratory/audio"
+        method="post">
+          <input class = "input-file" type="file" name="uploaded-audio"/>
+          <div style = "position: absolute; z-index: 1; top: 0px; left: 0px;">
+            <button class="uploadBtn" >
+              Try it
+            </button>
+          </div>
+          <input type="submit" name="submit" id = "submit" accept="audio/*" multiple="false" style="display: none;"/>
+        </form>
+        <div
+          id="spinner"
           class="spinner-border text-dark"
           style="margin-left: 1rem; display: none"
-          id="spinner"
-	  style = "display: 'none'"
-        ></span>
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
 
       <div id="results" style="display: none">
@@ -135,10 +139,7 @@
         />
         <br />
 
-        <table
-          style="border-collapse: separate; border-spacing: 1rem"
-          cellspacing="1rem"
-        >
+        <table style="border-collapse: separate; border-spacing: 1rem">
           <tr>
             <td>
               <h4 class="probabilities" id="cat0prob"></h4>

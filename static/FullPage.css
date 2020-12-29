@@ -36,7 +36,9 @@ body {
   outline: none;
   width: 180px;
   height: 44px;
-  padding: 8px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   letter-spacing: 0.05em;
   font-family: "Roboto", sans;
@@ -47,6 +49,14 @@ body {
   color: black;
   font-size: large;
   font-weight: bold;
+}
+
+.input-file {
+  cursor: pointer;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
 }
 
 #predict {

@@ -1,4 +1,5 @@
 let express = require("express");
+let path = require("path")
 let bodyparser = require("body-parser");
 let multer = require("multer");
 let app = express();
@@ -24,7 +25,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", function(req, res) {
-  res.sendFile("Home.html");
+  res.sendFile(path.resolve(__dirname , "static", "Home.html"));
 });
 
 app.use(express.static("./static/"));
@@ -38,8 +39,7 @@ app.post("/HeartDisease", function (req, res) {
 
   process.stdout.on("data", function (data) {
     console.log("python script's output");
-    let predicti 
-on =
+    let prediction =
       data.toString() == "0"
         ? "Healthy, Nearly No Chances Of Heart Disease"
         : "High Chances of Heart Disease Detected. Visit A Doctor Soon.";
@@ -47,14 +47,36 @@ on =
   });
 });
 
-app.post("/Respiratory/audio", function (req, res) {
+// app.post("/Respiratory/audio", function (req, res) {
+//   console.log("Uploading audio");
+//   upload(req, res, function(err) {
+//     if(err){
+//       return res.end("Error uploading file.");
+//     }
+//   });
+
+//   console.log("passing it to python");
+//   var spawn = require("child_process").spawn;
+//   var process = spawn("python", [
+//     "./resp-disease.py"
+//   ]);
+
+//   process.stdout.on("data", function (data) {
+//     console.log("Got output from python");
+//     res.end(data.toString());
+//     console.log(data.toString());
+//     });
+// });
+
+app.post("/Respiratory/audio", function(req, res) {
   console.log("Uploading audio");
   upload(req, res, function(err) {
-    if(err){
+    if(err) {
       return res.end("Error uploading file.");
     }
   });
 
+  console.log("File Uploaded Successfully.")
   console.log("passing it to python");
   var spawn = require("child_process").spawn;
   var process = spawn("python", [
