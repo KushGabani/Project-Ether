@@ -59,6 +59,14 @@ body {
   opacity: 0;
 }
 
+.buttonArena {
+  display: flex;
+}
+
+#spinner {
+  margin-top: 1.5rem;
+}
+
 #predict {
   outline: none;
   width: 20rem;

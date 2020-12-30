@@ -101,26 +101,26 @@
         <span style="color: #ff9000">Digital Stethoscopes</span>.
       </p>
 
-      <div class = "buttonArena align-center" style = "position: relative;">
+      <div class = "buttonArena" style = "position: relative;">
+        <div
+          id="spinner"
+          class="spinner-border text-dark"
+          style="display: none;"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
         <form id="uploadForm"
         enctype="multipart/form-data"
         action="/Respiratory/audio"
         method="post">
           <input class = "input-file" type="file" name="uploaded-audio"/>
-          <div style = "position: absolute; z-index: 1; top: 0px; left: 0px;">
+          <div style = "position: absolute; z-index: 1; top: 0px; left: 3rem;">
             <button class="uploadBtn" >
               Try it
             </button>
           </div>
           <input type="submit" name="submit" id = "submit" accept="audio/*" multiple="false" style="display: none;"/>
-        </form>
-        <div
-          id="spinner"
-          class="spinner-border text-dark"
-          style="margin-left: 1rem; display: none"
-        >
-          <span class="sr-only">Loading...</span>
-        </div>
+        </form>        
       </div>
 
       <div id="results" style="display: none">

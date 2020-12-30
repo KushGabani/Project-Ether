@@ -1,4 +1,0 @@
-tensorflow-cpu
-librosa
-pandas
-sklearn
