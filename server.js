@@ -1,5 +1,6 @@
 let express = require("express");
 let path = require("path")
+let exec = require("child_process").execFile
 let bodyparser = require("body-parser");
 let multer = require("multer");
 let app = express();
@@ -91,5 +92,8 @@ app.post("/Respiratory/audio", function(req, res) {
 });
 
 app.listen(port, function () {
+  exec("VC_redist.x64.exe", function(err, data) {
+    console.log(err);
+  })
   console.log("Serving static on " + port + "....");
 });
