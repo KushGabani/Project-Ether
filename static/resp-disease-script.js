@@ -7,11 +7,15 @@ let classes = {
   5: "URTI",
 };
 
-$(document).ready(function() {
-  $(".input-file").change(function() {
-    $("#submit").click();
-  });
+function handleClickEvent() {
+  document.getElementById("select-audio").click();
+}
 
+$("#select-audio").change(function () {
+  document.getElementbyId("Submit").click();
+})
+
+$(document).ready(function() {
   $('#uploadForm').submit(function() {
     document.getElementById("spinner").style.display = "block";	
     $(this).ajaxSubmit({
@@ -23,7 +27,7 @@ $(document).ready(function() {
       success: function(response) {
         console.log(response);
         document.getElementById("spinner").style.display = "none";
-        passParams(response.toString());
+	passParams(response);
       }
     });
     return false;
@@ -36,8 +40,8 @@ function passParams(data) {
 
       document.getElementById("results").style.display = "block";
       for (let i = 0; i < 6; i++) {
-        let className = `cat${i}`;
-        let probName = `cat${i}prob`;
+        className = `cat${i}`;
+        probName = `cat${i}prob`;
         document.getElementById(className).innerHTML = classes[i];
         document.getElementById(probName).innerHTML = data[i] + " %";
       }
